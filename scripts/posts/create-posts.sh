@@ -17,6 +17,7 @@ curl "${API}${URL_PATH}" \
      "body": "'"${BODY}"'"
    }
  }'
+ jjj
 
 echo
 #! testing with missing auth info
