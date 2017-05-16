@@ -19,3 +19,4 @@ module.exports = require('lib/wiring/routes')
 
 // all routes created
 .resources('posts')
+.resources('pages')
