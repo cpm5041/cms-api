@@ -12,18 +12,14 @@ const index = (req, res, next) => {
   Post.find()
     .then(posts => res.json({
       posts: posts.map((e) =>
-        e.toJSON({ virtuals: true
-          // , user: req.user
-        }))
+        e.toJSON({virtuals: true, user: req.user}))
     }))
     .catch(next)
 }
 
 const show = (req, res) => {
   res.json({
-    post: req.post.toJSON({ virtuals: true
-      // , user: req.user
-    })
+    post: req.post.toJSON({virtuals: true, user: req.user})
   })
 }
 
