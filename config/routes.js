@@ -22,3 +22,4 @@ module.exports = require('lib/wiring/routes')
 .get('/userposts/:id', 'posts#indexUser')
 
 .resources('pages')
+.get('/userpages/:id', 'pages#indexUser')
