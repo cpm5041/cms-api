@@ -17,6 +17,13 @@ const index = (req, res, next) => {
     .catch(next)
 }
 
+const indexUser = (req, res, next) => {
+  const owner = { _owner: req.user._id }
+  Page.find(owner)
+      .then(pages => res.json({ pages }))
+      .catch(err => next(err))
+}
+
 const show = (req, res) => {
   res.json({
     page: req.page.toJSON({virtuals: true, user: req.user})
@@ -54,7 +61,8 @@ module.exports = controller({
   show,
   create,
   update,
-  destroy
+  destroy,
+  indexUser
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
   { method: authenticate, except: ['index', 'show'] },

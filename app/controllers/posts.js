@@ -17,6 +17,13 @@ const index = (req, res, next) => {
     .catch(next)
 }
 
+const indexUser = (req, res, next) => {
+  const owner = { _owner: req.user._id }
+  Post.find(owner)
+      .then(posts => res.json({ posts }))
+      .catch(err => next(err))
+}
+
 const show = (req, res) => {
   res.json({
     post: req.post.toJSON({virtuals: true, user: req.user})
@@ -51,6 +58,7 @@ const destroy = (req, res, next) => {
 
 module.exports = controller({
   index,
+  indexUser,
   show,
   create,
   update,
