@@ -23,7 +23,7 @@ const pageSchema = new mongoose.Schema({
   },
   template: {
     type: String,
-    enum: ['default', 'cool', 'fancy'],
+    enum: ['defaultTemplate', 'coolTemplate', 'fancyTemplate'],
     required: true
   },
   _owner: {
