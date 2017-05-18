@@ -23,6 +23,7 @@ const pageSchema = new mongoose.Schema({
   },
   background: {
     type: String,
+    enum: ['default', 'cool', 'fancy'],
     required: true
   },
   _owner: {
