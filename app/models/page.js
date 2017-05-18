@@ -21,8 +21,9 @@ const pageSchema = new mongoose.Schema({
     maxlength: 100,
     required: true
   },
-  background: {
+  template: {
     type: String,
+    enum: ['defaultTemplate', 'coolTemplate', 'fancyTemplate'],
     required: true
   },
   _owner: {

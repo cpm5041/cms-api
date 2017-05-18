@@ -2,10 +2,11 @@
 #!/ this works
 API="http://localhost:4741"
 URL_PATH="/pages"
-TOKEN="DD2U1ft5cl9YRz0qYg7D1oCpve+I983n3g9qmJ9Lzek=--Nzj5DIDzfImmuJvOp3asfF4gUuNIxW8v25Qh/QMdG40="
+TOKEN="OonxbSCybd5QPYr05M46Ar7vLugCNtKenZV119jyIlI=--S1nqbAMn/WMZVuK8FthVRkK+EEkuSKgvSGP/p9ZVG+w="
 TITLE="21nd Blog"
 BODY="Our exciting testing journey continues"
 FOOTER="Foot"
+TEMPLATE="gibberish"
 
 curl "${API}${URL_PATH}" \
  --include \
@@ -16,7 +17,9 @@ curl "${API}${URL_PATH}" \
    "page": {
      "title": "'"${TITLE}"'",
      "body": "'"${BODY}"'",
-     "footer": "'"${FOOTER}"'"
+     "footer": "'"${FOOTER}"'",
+     "template": "'"${TEMPLATE}"'"
+
    }
  }'
 #  jjj
