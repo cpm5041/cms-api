@@ -5,13 +5,23 @@ const mongoose = require('mongoose')
 const pageSchema = new mongoose.Schema({
   title: {
     type: String,
+    minlength: 1,
+    maxlength: 100,
     required: true
   },
   body: {
     type: String,
+    minlength: 1,
+    maxlength: 500,
     required: true
   },
   footer: {
+    type: String,
+    minlength: 1,
+    maxlength: 100,
+    required: true
+  },
+  background: {
     type: String,
     required: true
   },
