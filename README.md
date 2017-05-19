@@ -1,18 +1,36 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# express-api-template
+# Featherpen! API Description
 
-A template for starting projects with `express` as an API. Includes
-authentication and common middlewares.
+Featherpen is a content management system that allows users to create, read,
+update, and delete blogs and pages. The API for this application is built with
+MongoDB and Express. It provides for user authentication and CRUD actions for
+posts and pages.
 
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
+## Links
 
-This template follows Rails-like conventions for organizing controller and
-model code, and has a routing layer which is similar to the Rails routing DSL.
+[Front-End Repository](https://github.com/Shake-and-Bake/cms-client)
+
+[Deployed Back-End App](https://hidden-stream-36451.herokuapp.com/)
+
+[Deployed Front-End App](https://shake-and-bake.github.io/cms-client/)
+
+# Development Process
+
+As a team, we worked together to determine what models we wanted to use for our
+application. After group discussion, we determined that we wanted users to have
+pages and posts (blog posts). We started out with a basic schema for each model.
+Over time, we were able to easily update the schema due to the flexibility
+that MongoDB provides.
+
+Some of the biggest challenges that we faced included figuring out a way to
+access just an individual user's posts and/or pages, and limiting the values
+that the page schema accepted for the 'template' attribute in the page schema.
+We were able to solve these issues through group discussion, pair programming,
+online research, and looking at past issues in the issue queue.
+
+As a team, we worked well together and regularly engaged in pair programming
+sessions.
 
 ## Dependencies
 
@@ -20,12 +38,6 @@ Install with `npm install`.
 
 -   [`express`](http://expressjs.com/)
 -   [`mongoose`](http://mongoosejs.com/)
-
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
 
 ## Installation
 
@@ -68,23 +80,7 @@ Developers should store JavaScript files in [`app/controllers`](app/controllers)
  and [`app/models`](app/models).
 Routes are stored in [`config/routes.js`](config/routes.js)
 
-## Tasks
-
-Developers should run these often!
-
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt reformat`: reformats all your code in a standard style
--   `grunt test`: runs any automated tests
-
 ## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`scripts`](scripts) to test built-in actions. Add your
-own scripts to test your custom API.
 
 ### Authentication
 
@@ -273,6 +269,343 @@ Content-Type: application/json; charset=utf-8
     "email": "another@example.email"
   }
 }
+```
+### POSTS
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/posts`               | `posts#create`    |
+| GET    | `/posts`               | `posts#index`     |
+| PATCH  | `/posts/:id`           | `posts#update`    |
+| DELETE | `/posts/:id`           | `posts#destroy`   |
+| GET    | `/userposts/:id`       | `posts#indexUser` |
+
+#### POST /posts
+
+API ='http://localhost:4741'
+URL_PATH='/posts'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+ --include \
+ --request POST \
+ --header "Content-Type: application/json" \
+ --header "Authorization: Token token=${TOKEN}" \
+ --data '{
+   "post": {
+     "title": "'"${TITLE}"'",
+     "body": "'"${BODY}"'"
+   }
+ }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 281
+ETag: W/"119-7zVSpKacYaxic9GzYq38yjUhE6M"
+Date: Fri, 19 May 2017 05:23:39 GMT
+Connection: keep-alive
+
+{"post":{"__v":0,"updatedAt":"2017-05-19T05:23:39.060Z","createdAt":"2017-05-19T05:23:39.060Z","title":"Yes! Blog","body":"Our exciting testing journey continues","_owner":"591e810d08f59dd62c25dca3","_id":"591e815b08f59dd62c25dca4","id":"591e815b08f59dd62c25dca4","editable":true}}
+```
+
+#### GET /posts
+
+API ='http://localhost:4741'
+URL_PATH='/posts'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+  --include \
+  --request GET
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 10649
+ETag: W/"2999-5mENn5wszL/1YS1sbW6H9aGTiJ8"
+Date: Fri, 19 May 2017 05:25:03 GMT
+Connection: keep-alive
+
+{"posts":[{"_id":"591a57d81eb4623f58317800","updatedAt":"2017-05-16T01:37:28.451Z","createdAt":"2017-05-16T01:37:28.451Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a57d81eb4623f58317800","editable":false},{"_id":"591a5816c56a283f91ad145f","updatedAt":"2017-05-16T01:38:30.496Z","createdAt":"2017-05-16T01:38:30.496Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a5816c56a283f91ad145f","editable":false}]}
+```
+#### PATCH /posts/:id
+
+API='http://localhost:4741'
+URL_PATH='/posts'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "post": {
+      "body": "'"${TEXT}"'"
+    }
+  }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:27:02 GMT
+Connection: keep-alive
+```
+
+#### DELETE /posts/:id
+
+API='http://localhost:4741'
+URL_PATH='/posts'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:27:37 GMT
+Connection: keep-alive
+```
+#### GET /userposts/:id
+
+API='http://localhost:4741/'
+URL_PATH='/userposts'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}"\
+  --header "Content-Type: application/json"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 285
+ETag: W/"11d-N8cd/2MMxwgx9tCb7tQZpYh0JcY"
+Date: Fri, 19 May 2017 05:28:35 GMT
+Connection: keep-alive
+
+{"posts":[{"_id":"591e815b08f59dd62c25dca4","updatedAt":"2017-05-19T05:23:39.060Z","createdAt":"2017-05-19T05:23:39.060Z","title":"Yes! Blog","body":"Our exciting testing journey continues","_owner":"591e810d08f59dd62c25dca3","__v":0,"id":"591e815b08f59dd62c25dca4","editable":false}]}
+```
+
+### PAGES
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/pages`               | `pages#create`    |
+| GET    | `/pages`               | `pages#index`     |
+| PATCH  | `/pages/:id`           | `pages#update`    |
+| DELETE | `/pages/:id`           | `pages#destroy`   |
+| GET    | `/userpages/:id`       | `pages#indexUser` |
+
+#### POST /pages
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+*Note: Page schema only accepts one of three values for template attribute:
+'defaultTemplate'
+'coolTemplate'
+'fancyTemplate'
+One of these must be used as the value for template in order to successfully
+create a page.
+
+```sh
+curl "${API}${URL_PATH}" \
+ --include \
+ --request POST \
+ --header "Content-Type: application/json" \
+ --header "Authorization: Token token=${TOKEN}" \
+ --data '{
+   "page": {
+     "title": "'"${TITLE}"'",
+     "body": "'"${BODY}"'",
+     "footer": "'"${FOOTER}"'",
+     "template": "'"${TEMPLATE}"'"
+
+   }
+ }'
+
+```
+
+Example Response:
+
+```md
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 326
+ETag: W/"146-PYxRHyGIHaYxJvcVCZWjyXI5TRA"
+Date: Fri, 19 May 2017 05:30:09 GMT
+Connection: keep-alive
+
+{"page":{"__v":0,"updatedAt":"2017-05-19T05:30:09.767Z","createdAt":"2017-05-19T05:30:09.767Z","title":"21nd Blog","body":"Our exciting testing journey continues","footer":"Foot","template":"defaultTemplate","_owner":"591e810d08f59dd62c25dca3","_id":"591e82e108f59dd62c25dca7","id":"591e82e108f59dd62c25dca7","editable":true}}
+```
+
+#### GET /pages
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+  --include \
+  --request GET \
+
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 3066
+ETag: W/"bfa-WfG3h7iloB5DcWylnb2n2djLuiA"
+Date: Fri, 19 May 2017 05:31:26 GMT
+Connection: keep-alive
+
+{"pages":[{"_id":"591cad99030a294f605b5aa6","updatedAt":"2017-05-17T20:07:53.388Z","createdAt":"2017-05-17T20:07:53.388Z","title":"whaaa","body":"too cool","footer":"no","_owner":"591cacb7030a294f605b5aa1","__v":0,"id":"591cad99030a294f605b5aa6","editable":false},{"_id":"591db5457182b3818dccd9e9","updatedAt":"2017-05-18T14:52:53.772Z","createdAt":"2017-05-18T14:52:53.772Z","title":"Jon Snow","body":"His color should be white","footer":"he has been resurrected","background":"default-white","_owner":"591db4ad7182b3818dccd9e7","__v":0,"id":"591db5457182b3818dccd9e9","editable":false}]}
+```
+#### PATCH /pages/:id
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "page": {
+      "body": "'"${TEXT}"'"
+    }
+  }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:32:55 GMT
+Connection: keep-alive
+```
+
+#### DELETE /pages/:id
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:33:41 GMT
+Connection: keep-alive
+```
+#### GET /userpages/:id
+
+API ='http://localhost:4741'
+URL_PATH='/userpages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}"\
+  --header "Content-Type: application/json"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
+Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 330
+ETag: W/"14a-ekR2Tcgzr9pp0euP2r538VEbSqM"
+Date: Fri, 19 May 2017 05:34:13 GMT
+Connection: keep-alive
+
+{"pages":[{"_id":"591e82e108f59dd62c25dca7","updatedAt":"2017-05-19T05:30:09.767Z","createdAt":"2017-05-19T05:30:09.767Z","title":"21nd Blog","body":"Our exciting testing journey continues","footer":"Foot","template":"defaultTemplate","_owner":"591e810d08f59dd62c25dca3","__v":0,"id":"591e82e108f59dd62c25dca7","editable":false}]}
 ```
 
 ## [License](LICENSE)
