@@ -281,8 +281,8 @@ Content-Type: application/json; charset=utf-8
 
 #### POST /posts
 
-API = http://localhost:4741/
-URL_PATH=posts
+API ='http://localhost:4741'
+URL_PATH='/posts'
 
 Request:
 
@@ -304,24 +304,22 @@ Example Response:
 
 ```md
 HTTP/1.1 201 Created
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Content-Type: application/json; charset=utf-8
-ETag: W/"8ba96f9e47500076806336e11ee43828"
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: b49dec54-e721-4153-b0a6-60b87ad51449
-X-Runtime: 0.014579
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
-Transfer-Encoding: chunked
+Content-Type: application/json; charset=utf-8
+Content-Length: 281
+ETag: W/"119-7zVSpKacYaxic9GzYq38yjUhE6M"
+Date: Fri, 19 May 2017 05:23:39 GMT
+Connection: keep-alive
 
-{"goal":{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"}}
+{"post":{"__v":0,"updatedAt":"2017-05-19T05:23:39.060Z","createdAt":"2017-05-19T05:23:39.060Z","title":"Yes! Blog","body":"Our exciting testing journey continues","_owner":"591e810d08f59dd62c25dca3","_id":"591e815b08f59dd62c25dca4","id":"591e815b08f59dd62c25dca4","editable":true}}
 ```
 
 #### GET /posts
 
-API = http://localhost:4741/
-URL_PATH=posts
+API ='http://localhost:4741'
+URL_PATH='/posts'
 
 Request:
 
@@ -335,23 +333,21 @@ Example Response:
 
 ```md
 HTTP/1.1 200 OK
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Content-Type: application/json; charset=utf-8
-ETag: W/"d1c466e66c88d3526f5ee83ec0fbe07c"
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 122a92a6-9fda-4367-9d3f-64550d04c6d5
-X-Runtime: 0.007045
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
-Transfer-Encoding: chunked
+Content-Type: application/json; charset=utf-8
+Content-Length: 10649
+ETag: W/"2999-5mENn5wszL/1YS1sbW6H9aGTiJ8"
+Date: Fri, 19 May 2017 05:25:03 GMT
+Connection: keep-alive
 
-{"pages":[{"id":86,"description":"See Mereen","category":"Travel","status":"Not Started"},{"id":5,"description":"","category":"","status":""},{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"},{"id":83,"description":"Ride a dragon","category":"Travel","status":"Not started"},{"id":76,"description":"Go to Castle Black","category":"Travel","status":"Completed"},{"id":24,"description":"See a dragon again","category":"Travel","status":"not started"}]}
+{"posts":[{"_id":"591a57d81eb4623f58317800","updatedAt":"2017-05-16T01:37:28.451Z","createdAt":"2017-05-16T01:37:28.451Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a57d81eb4623f58317800","editable":false},{"_id":"591a5816c56a283f91ad145f","updatedAt":"2017-05-16T01:38:30.496Z","createdAt":"2017-05-16T01:38:30.496Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a5816c56a283f91ad145f","editable":false}
 ```
 #### PATCH /posts/:id
 
-API = http://localhost:4741/
-URL_PATH=posts
+API='http://localhost:4741'
+URL_PATH='/posts'
 
 Request:
 
@@ -372,19 +368,18 @@ Example Response:
 
 ```md
 HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 8b53ebec-389f-4be0-9e39-b21d7ca2035d
-X-Runtime: 0.014355
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:27:02 GMT
+Connection: keep-alive
 ```
 
 #### DELETE /posts/:id
 
-API = http://localhost:4741/
-URL_PATH=posts
+API='http://localhost:4741'
+URL_PATH='/posts'
 
 Request:
 
@@ -399,18 +394,17 @@ Example Response:
 
 ```md
 HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
-X-Runtime: 0.011799
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:27:37 GMT
+Connection: keep-alive
 ```
 #### GET /userposts/:id
 
-API = http://localhost:4741/
-URL_PATH=userposts
+API='http://localhost:4741/'
+URL_PATH='/userposts'
 
 Request:
 
@@ -425,14 +419,17 @@ curl "${API}${URL_PATH}/${ID}" \
 Example Response:
 
 ```md
-HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
-X-Runtime: 0.011799
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 285
+ETag: W/"11d-N8cd/2MMxwgx9tCb7tQZpYh0JcY"
+Date: Fri, 19 May 2017 05:28:35 GMT
+Connection: keep-alive
+
+{"posts":[{"_id":"591e815b08f59dd62c25dca4","updatedAt":"2017-05-19T05:23:39.060Z","createdAt":"2017-05-19T05:23:39.060Z","title":"Yes! Blog","body":"Our exciting testing journey continues","_owner":"591e810d08f59dd62c25dca3","__v":0,"id":"591e815b08f59dd62c25dca4","editable":false}]}
 ```
 
 ### PAGES
