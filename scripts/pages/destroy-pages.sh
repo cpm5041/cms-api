@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/ this works
 API="http://localhost:4741"
 URL_PATH="/pages"
 ID="591b42f4ce289ea49aef04c1"

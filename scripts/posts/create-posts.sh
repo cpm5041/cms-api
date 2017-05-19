@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/ this works
 API="http://localhost:4741"
 URL_PATH="/posts"
 TOKEN="6AUj3TCz/Op5dcqTdKrFGa7o2h4i1eFGWdB1T7qYwj0=--2IdivyoQPiPOR68UiSuv3+r18RJT2mCA2rXXzYTLlxU="
