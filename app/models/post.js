@@ -22,7 +22,6 @@ const postSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true,
-  // do we even need this??
   toJSON: {
     virtuals: true,
     transform: function (doc, ret, options) {
@@ -32,11 +31,6 @@ const postSchema = new mongoose.Schema({
     }
   }
 })
-
-// NEED THIS??
-// postSchema.virtual('length').get(function length () {
-//   return this.text.length
-// })
 
 const Post = mongoose.model('Post', postSchema)
 
