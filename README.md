@@ -577,7 +577,7 @@ ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
 Date: Fri, 19 May 2017 05:33:41 GMT
 Connection: keep-alive
 ```
-#### GET /userposts/:id
+#### GET /userpages/:id
 
 API ='http://localhost:4741'
 URL_PATH='/userpages'
