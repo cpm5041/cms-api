@@ -342,7 +342,7 @@ ETag: W/"2999-5mENn5wszL/1YS1sbW6H9aGTiJ8"
 Date: Fri, 19 May 2017 05:25:03 GMT
 Connection: keep-alive
 
-{"posts":[{"_id":"591a57d81eb4623f58317800","updatedAt":"2017-05-16T01:37:28.451Z","createdAt":"2017-05-16T01:37:28.451Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a57d81eb4623f58317800","editable":false},{"_id":"591a5816c56a283f91ad145f","updatedAt":"2017-05-16T01:38:30.496Z","createdAt":"2017-05-16T01:38:30.496Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a5816c56a283f91ad145f","editable":false}
+{"posts":[{"_id":"591a57d81eb4623f58317800","updatedAt":"2017-05-16T01:37:28.451Z","createdAt":"2017-05-16T01:37:28.451Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a57d81eb4623f58317800","editable":false},{"_id":"591a5816c56a283f91ad145f","updatedAt":"2017-05-16T01:38:30.496Z","createdAt":"2017-05-16T01:38:30.496Z","title":"Testing Blog Post","body":"Lets see if this thing works","_owner":"591a555856ef333b88ff2146","__v":0,"id":"591a5816c56a283f91ad145f","editable":false}]}
 ```
 #### PATCH /posts/:id
 
@@ -478,18 +478,16 @@ Example Response:
 
 ```md
 HTTP/1.1 201 Created
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Content-Type: application/json; charset=utf-8
-ETag: W/"8ba96f9e47500076806336e11ee43828"
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: b49dec54-e721-4153-b0a6-60b87ad51449
-X-Runtime: 0.014579
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
-Transfer-Encoding: chunked
+Content-Type: application/json; charset=utf-8
+Content-Length: 326
+ETag: W/"146-PYxRHyGIHaYxJvcVCZWjyXI5TRA"
+Date: Fri, 19 May 2017 05:30:09 GMT
+Connection: keep-alive
 
-{"goal":{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"}}
+{"page":{"__v":0,"updatedAt":"2017-05-19T05:30:09.767Z","createdAt":"2017-05-19T05:30:09.767Z","title":"21nd Blog","body":"Our exciting testing journey continues","footer":"Foot","template":"defaultTemplate","_owner":"591e810d08f59dd62c25dca3","_id":"591e82e108f59dd62c25dca7","id":"591e82e108f59dd62c25dca7","editable":true}}
 ```
 
 #### GET /pages
@@ -510,18 +508,16 @@ Example Response:
 
 ```md
 HTTP/1.1 200 OK
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Content-Type: application/json; charset=utf-8
-ETag: W/"d1c466e66c88d3526f5ee83ec0fbe07c"
-Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 122a92a6-9fda-4367-9d3f-64550d04c6d5
-X-Runtime: 0.007045
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
-Transfer-Encoding: chunked
+Content-Type: application/json; charset=utf-8
+Content-Length: 3066
+ETag: W/"bfa-WfG3h7iloB5DcWylnb2n2djLuiA"
+Date: Fri, 19 May 2017 05:31:26 GMT
+Connection: keep-alive
 
-{"pages":[{"id":86,"description":"See Mereen","category":"Travel","status":"Not Started"},{"id":5,"description":"","category":"","status":""},{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"},{"id":83,"description":"Ride a dragon","category":"Travel","status":"Not started"},{"id":76,"description":"Go to Castle Black","category":"Travel","status":"Completed"},{"id":24,"description":"See a dragon again","category":"Travel","status":"not started"}]}
+{"pages":[{"_id":"591cad99030a294f605b5aa6","updatedAt":"2017-05-17T20:07:53.388Z","createdAt":"2017-05-17T20:07:53.388Z","title":"whaaa","body":"too cool","footer":"no","_owner":"591cacb7030a294f605b5aa1","__v":0,"id":"591cad99030a294f605b5aa6","editable":false},{"_id":"591db5457182b3818dccd9e9","updatedAt":"2017-05-18T14:52:53.772Z","createdAt":"2017-05-18T14:52:53.772Z","title":"Jon Snow","body":"His color should be white","footer":"he has been resurrected","background":"default-white","_owner":"591db4ad7182b3818dccd9e7","__v":0,"id":"591db5457182b3818dccd9e9","editable":false}]}
 ```
 #### PATCH /pages/:id
 
@@ -547,13 +543,12 @@ Example Response:
 
 ```md
 HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 8b53ebec-389f-4be0-9e39-b21d7ca2035d
-X-Runtime: 0.014355
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:32:55 GMT
+Connection: keep-alive
 ```
 
 #### DELETE /pages/:id
@@ -574,13 +569,12 @@ Example Response:
 
 ```md
 HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
-X-Runtime: 0.011799
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+ETag: W/"a-bAsFyilMr4Ra1hIU5PyoyFRunpI"
+Date: Fri, 19 May 2017 05:33:41 GMT
+Connection: keep-alive
 ```
 #### GET /userposts/:id
 
@@ -600,14 +594,18 @@ curl "${API}${URL_PATH}/${ID}" \
 Example Response:
 
 ```md
-HTTP/1.1 204 No Content
-X-Frame-Options: SAMEORIGIN
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Cache-Control: no-cache
-X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
-X-Runtime: 0.011799
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: http://localhost:7165
 Vary: Origin
+Content-Type: application/json; charset=utf-8
+Content-Length: 330
+ETag: W/"14a-ekR2Tcgzr9pp0euP2r538VEbSqM"
+Date: Fri, 19 May 2017 05:34:13 GMT
+Connection: keep-alive
+
+{"pages":[{"_id":"591e82e108f59dd62c25dca7","updatedAt":"2017-05-19T05:30:09.767Z","createdAt":"2017-05-19T05:30:09.767Z","title":"21nd Blog","body":"Our exciting testing journey continues","footer":"Foot","template":"defaultTemplate","_owner":"591e810d08f59dd62c25dca3","__v":0,"id":"591e82e108f59dd62c25dca7","editable":false}]}
+```
 
 ## [License](LICENSE)
 
