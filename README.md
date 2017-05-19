@@ -1,18 +1,35 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# express-api-template
+# Featherpen API Description
 
-A template for starting projects with `express` as an API. Includes
-authentication and common middlewares.
+Featherpen is a content management system that allows users to create, read,
+update, and delete blogs and pages. The API for this application is built with
+MongoDB and Express. It provides for user authentication and CRUD actions for
+posts and pages.
 
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
+## Links
 
-This template follows Rails-like conventions for organizing controller and
-model code, and has a routing layer which is similar to the Rails routing DSL.
+[Front-End Repository](https://github.com/Shake-and-Bake/cms-client)
+
+[Deployed Back-End App](https://hidden-stream-36451.herokuapp.com/)
+[Deployed Front-End App](https://shake-and-bake.github.io/cms-client/)
+
+# Development Process
+
+As a team, we worked together to determine what models we wanted to use for our
+application. After group discussion, we determined that we wanted users to have
+pages and posts (blog posts). We started out with a basic schema for each model.
+Over time, we were able to easily update the schema due to the flexibility
+that MongoDB provides.
+
+Some of the biggest challenges that we faced included figuring out a way to
+access just an individual user's posts and/or pages, and limiting the values
+that the page schema accepted for the 'template' attribute. We were able to
+solve these issues through group discussion, online research, and looking
+at past issues in the issue queue.
+
+As a team, we worked well together and regularly engaged in pair programming
+sessions.
 
 ## Dependencies
 
@@ -20,12 +37,6 @@ Install with `npm install`.
 
 -   [`express`](http://expressjs.com/)
 -   [`mongoose`](http://mongoosejs.com/)
-
-At the beginning of each cohort, update the versions in
-[`package.json`](package.json) by replace all versions with a glob (`*`) and
-running `npm update --save && npm update --save-dev`. You may wish to test these
-changes by deleting the `node_modules` directory and running `npm install`.
-Fix any conflicts.
 
 ## Installation
 
@@ -68,23 +79,7 @@ Developers should store JavaScript files in [`app/controllers`](app/controllers)
  and [`app/models`](app/models).
 Routes are stored in [`config/routes.js`](config/routes.js)
 
-## Tasks
-
-Developers should run these often!
-
--   `grunt nag` or just `grunt`: runs code quality analysis tools on your code
-    and complains
--   `grunt reformat`: reformats all your code in a standard style
--   `grunt test`: runs any automated tests
-
 ## API
-
-Use this as the basis for your own API documentation. Add a new third-level
-heading for your custom entities, and follow the pattern provided for the
-built-in user authentication documentation.
-
-Scripts are included in [`scripts`](scripts) to test built-in actions. Add your
-own scripts to test your custom API.
 
 ### Authentication
 
@@ -274,6 +269,348 @@ Content-Type: application/json; charset=utf-8
   }
 }
 ```
+### POSTS
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/posts`               | `posts#create`    |
+| GET    | `/posts`               | `posts#index`     |
+| PATCH  | `/posts/:id`           | `posts#update`    |
+| DELETE | `/posts/:id`           | `posts#destroy`   |
+| GET    | `/userposts/:id`       | `posts#indexUser` |
+
+#### POST /posts
+
+API = http://localhost:4741/
+URL_PATH=posts
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+ --include \
+ --request POST \
+ --header "Content-Type: application/json" \
+ --header "Authorization: Token token=${TOKEN}" \
+ --data '{
+   "post": {
+     "title": "'"${TITLE}"'",
+     "body": "'"${BODY}"'"
+   }
+ }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 201 Created
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"8ba96f9e47500076806336e11ee43828"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: b49dec54-e721-4153-b0a6-60b87ad51449
+X-Runtime: 0.014579
+Vary: Origin
+Transfer-Encoding: chunked
+
+{"goal":{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"}}
+```
+
+#### GET /posts
+
+API = http://localhost:4741/
+URL_PATH=posts
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+  --include \
+  --request GET
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"d1c466e66c88d3526f5ee83ec0fbe07c"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 122a92a6-9fda-4367-9d3f-64550d04c6d5
+X-Runtime: 0.007045
+Vary: Origin
+Transfer-Encoding: chunked
+
+{"pages":[{"id":86,"description":"See Mereen","category":"Travel","status":"Not Started"},{"id":5,"description":"","category":"","status":""},{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"},{"id":83,"description":"Ride a dragon","category":"Travel","status":"Not started"},{"id":76,"description":"Go to Castle Black","category":"Travel","status":"Completed"},{"id":24,"description":"See a dragon again","category":"Travel","status":"not started"}]}
+```
+#### PATCH /posts/:id
+
+API = http://localhost:4741/
+URL_PATH=posts
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "post": {
+      "body": "'"${TEXT}"'"
+    }
+  }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 8b53ebec-389f-4be0-9e39-b21d7ca2035d
+X-Runtime: 0.014355
+Vary: Origin
+```
+
+#### DELETE /posts/:id
+
+API = http://localhost:4741/
+URL_PATH=posts
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
+X-Runtime: 0.011799
+Vary: Origin
+```
+#### GET /userposts/:id
+
+API = http://localhost:4741/
+URL_PATH=userposts
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}"\
+  --header "Content-Type: application/json"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
+X-Runtime: 0.011799
+Vary: Origin
+```
+
+### PAGES
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/pages`               | `pages#create`    |
+| GET    | `/pages`               | `pages#index`     |
+| PATCH  | `/pages/:id`           | `pages#update`    |
+| DELETE | `/pages/:id`           | `pages#destroy`   |
+| GET    | `/userpages/:id`       | `pages#indexUser` |
+
+#### POST /pages
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+*Note: Page schema only accepts one of three values for template attribute:
+'defaultTemplate'
+'coolTemplate'
+'fancyTemplate'
+One of these must be used as the value for template in order to successfully
+create a page.
+
+```sh
+curl "${API}${URL_PATH}" \
+ --include \
+ --request POST \
+ --header "Content-Type: application/json" \
+ --header "Authorization: Token token=${TOKEN}" \
+ --data '{
+   "page": {
+     "title": "'"${TITLE}"'",
+     "body": "'"${BODY}"'",
+     "footer": "'"${FOOTER}"'",
+     "template": "'"${TEMPLATE}"'"
+
+   }
+ }'
+
+```
+
+Example Response:
+
+```md
+HTTP/1.1 201 Created
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"8ba96f9e47500076806336e11ee43828"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: b49dec54-e721-4153-b0a6-60b87ad51449
+X-Runtime: 0.014579
+Vary: Origin
+Transfer-Encoding: chunked
+
+{"goal":{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"}}
+```
+
+#### GET /pages
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}" \
+  --include \
+  --request GET \
+
+```
+
+Example Response:
+
+```md
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Type: application/json; charset=utf-8
+ETag: W/"d1c466e66c88d3526f5ee83ec0fbe07c"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 122a92a6-9fda-4367-9d3f-64550d04c6d5
+X-Runtime: 0.007045
+Vary: Origin
+Transfer-Encoding: chunked
+
+{"pages":[{"id":86,"description":"See Mereen","category":"Travel","status":"Not Started"},{"id":5,"description":"","category":"","status":""},{"id":107,"description":"Meet George Washington","category":"Travel","status":"not started"},{"id":83,"description":"Ride a dragon","category":"Travel","status":"Not started"},{"id":76,"description":"Go to Castle Black","category":"Travel","status":"Completed"},{"id":24,"description":"See a dragon again","category":"Travel","status":"not started"}]}
+```
+#### PATCH /pages/:id
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request PATCH \
+  --header "Content-Type: application/json" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data '{
+    "page": {
+      "body": "'"${TEXT}"'"
+    }
+  }'
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 8b53ebec-389f-4be0-9e39-b21d7ca2035d
+X-Runtime: 0.014355
+Vary: Origin
+```
+
+#### DELETE /pages/:id
+
+API='http://localhost:4741'
+URL_PATH='/pages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request DELETE \
+  --header "Authorization: Token token=${TOKEN}"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
+X-Runtime: 0.011799
+Vary: Origin
+```
+#### GET /userposts/:id
+
+API ='http://localhost:4741'
+URL_PATH='/userpages'
+
+Request:
+
+```sh
+curl "${API}${URL_PATH}/${ID}" \
+  --include \
+  --request GET \
+  --header "Authorization: Token token=${TOKEN}"\
+  --header "Content-Type: application/json"
+```
+
+Example Response:
+
+```md
+HTTP/1.1 204 No Content
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: no-cache
+X-Request-Id: 0732c309-cd0a-42f3-b340-5049fa81e47f
+X-Runtime: 0.011799
+Vary: Origin
 
 ## [License](LICENSE)
 
