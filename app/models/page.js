@@ -33,7 +33,6 @@ const pageSchema = new mongoose.Schema({
   }
 }, {
   timestamps: true,
-  // do we even need this??
   toJSON: {
     virtuals: true,
     transform: function (doc, ret, options) {
@@ -43,11 +42,6 @@ const pageSchema = new mongoose.Schema({
     }
   }
 })
-
-// NEED THIS??
-// pageSchema.virtual('length').get(function length () {
-//   return this.text.length
-// })
 
 const Page = mongoose.model('Page', pageSchema)
 
