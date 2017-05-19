@@ -1,6 +1,6 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# Featherpen API Description
+# Featherpen! API Description
 
 Featherpen is a content management system that allows users to create, read,
 update, and delete blogs and pages. The API for this application is built with
@@ -12,6 +12,7 @@ posts and pages.
 [Front-End Repository](https://github.com/Shake-and-Bake/cms-client)
 
 [Deployed Back-End App](https://hidden-stream-36451.herokuapp.com/)
+
 [Deployed Front-End App](https://shake-and-bake.github.io/cms-client/)
 
 # Development Process
@@ -24,9 +25,9 @@ that MongoDB provides.
 
 Some of the biggest challenges that we faced included figuring out a way to
 access just an individual user's posts and/or pages, and limiting the values
-that the page schema accepted for the 'template' attribute. We were able to
-solve these issues through group discussion, online research, and looking
-at past issues in the issue queue.
+that the page schema accepted for the 'template' attribute in the page schema.
+We were able to solve these issues through group discussion, pair programming,
+online research, and looking at past issues in the issue queue.
 
 As a team, we worked well together and regularly engaged in pair programming
 sessions.
