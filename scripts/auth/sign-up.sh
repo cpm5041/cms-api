@@ -2,7 +2,7 @@
 
 API="http://localhost:4741"
 URL_PATH="/sign-up"
-EMAIL="will"
+EMAIL="jim"
 PASSWORD="ferrell"
 
 curl "${API}${URL_PATH}" \
