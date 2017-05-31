@@ -47,14 +47,8 @@ const addComment = (req, res, next) => {
 
 const updateComment = (req, res, next) => {
   const post = req.post
-  console.log('user id is:', req.user._id)
-  console.log('comment is', req.body.comment)
+
   const comment = post.comments.find(comment => comment.id === req.params.comment_id)
-  // console.log('req id type', typeof req.user._id)
-  // console.log('posted by id type', typeof comment.postedBy)
-  // req.user._id.toString()
-  // comment.postedBy.toString()
-  // console.log(!req.user._id.equals(comment.postedBy))
   if (!req.user._id.equals(comment.postedBy)) {
     throw new Error('Not Authorized')
   }
@@ -62,17 +56,20 @@ const updateComment = (req, res, next) => {
   req.post.update(post)
     .then(() => res.sendStatus(204))
     .catch(next)
-  // const comment = Object.assign(req.body.comment, {
-  //   postedBy: req.user._id
-  // })
-  // post.comments.push(comment)
-  // post.save()
-  //   .then(post =>
-  //     res.status(201)
-  //       .json({
-  //         post: post.toJSON({ virtuals: true, user: req.user })
-  //       }))
-  //   .catch(next)
+}
+const deleteComment = (req, res, next) => {
+  const post = req.post
+  console.log('post is', post)
+  const comment = post.comments.find(comment => comment.id === req.params.comment_id)
+  if (!req.user._id.equals(comment.postedBy)) {
+    throw new Error('Not Authorized')
+  }
+  const index = post.comments.findIndex(comment => comment.id === req.params.comment_id)
+  post.comments.splice(index, 1)
+  console.log('req param by is', req.params.comment_id)
+  req.post.update(post)
+    .then(() => res.sendStatus(204))
+    .catch(next)
 }
 
 const create = (req, res, next) => {
@@ -109,10 +106,11 @@ module.exports = controller({
   update,
   destroy,
   addComment,
-  updateComment
+  updateComment,
+  deleteComment
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
   { method: authenticate, except: ['index', 'show'] },
-  { method: setModel(Post), only: ['show', 'addComment', 'updateComment'] },
+  { method: setModel(Post), only: ['show', 'addComment', 'updateComment', 'deleteComment'] },
   { method: setModel(Post, { forUser: true }), only: ['update', 'destroy'] }
 ] })

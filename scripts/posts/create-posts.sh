@@ -1,9 +1,9 @@
 #!/bin/bash
 API="http://localhost:4741"
 URL_PATH="/posts"
-TOKEN="EUJlz3ARuVAlJL0J8m+l3dVLc/ykzLSTLXb8z2DQ0n4=--aMTiImERqSVjDANjhSR2yunUez7ZhnBZTdRC32Dkz5Q="
-TITLE="Testing comments with jim at 1058"
-BODY="TESTing Post body"
+TOKEN="HzZ8HkbAdamEuHcUUXnsMmKDDtYH45l/p+uQ1xBYWsA=--RKqddsxLNdri753TV7vsZxA246/dWcl3sFE+C/4eN0g="
+TITLE="Testing delete"
+BODY="Delete Post body"
 
 
 

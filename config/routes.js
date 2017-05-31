@@ -23,6 +23,7 @@ module.exports = require('lib/wiring/routes')
 // .get('/userposts/:id', 'posts#addComment')
 .post('/posts/:id/comments', 'posts#addComment')
 .patch('/posts/:id/comments/:comment_id', 'posts#updateComment')
+.delete('/posts/:id/comments/:comment_id', 'posts#deleteComment')
 
 .resources('pages')
 .get('/userpages/:id', 'pages#indexUser')

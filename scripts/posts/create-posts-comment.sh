@@ -1,9 +1,9 @@
 #!/bin/bash
 API="http://localhost:4741"
-URL_PATH="/posts/592eda341325fb0f2b61871b/comments"
-ID="592eda341325fb0f2b61871b"
-TOKEN="EUJlz3ARuVAlJL0J8m+l3dVLc/ykzLSTLXb8z2DQ0n4=--aMTiImERqSVjDANjhSR2yunUez7ZhnBZTdRC32Dkz5Q="
-COMMENTS="Jims  comment"
+URL_PATH="/posts/592ee5b28bfbfa121c280677/comments"
+ID="592ee5b28bfbfa121c280677"
+TOKEN="HzZ8HkbAdamEuHcUUXnsMmKDDtYH45l/p+uQ1xBYWsA=--RKqddsxLNdri753TV7vsZxA246/dWcl3sFE+C/4eN0g="
+COMMENTS=" 2nd delete test comment"
 
 curl "${API}${URL_PATH}" \
   --include \
