@@ -1,11 +1,8 @@
 #!/bin/bash
 API="http://localhost:4741"
-URL_PATH="/posts"
+URL_PATH="posts/:id/comments"
 TOKEN="EUJlz3ARuVAlJL0J8m+l3dVLc/ykzLSTLXb8z2DQ0n4=--aMTiImERqSVjDANjhSR2yunUez7ZhnBZTdRC32Dkz5Q="
-TITLE="Testing comments with jim at 1058"
-BODY="TESTing Post body"
-
-
+BODY="Comment"
 
 curl "${API}${URL_PATH}" \
  --include \
@@ -13,8 +10,7 @@ curl "${API}${URL_PATH}" \
  --header "Content-Type: application/json" \
  --header "Authorization: Token token=${TOKEN}" \
  --data '{
-   "post": {
-     "title": "'"${TITLE}"'",
+   "comment": {
      "body": "'"${BODY}"'"
    }
  }'

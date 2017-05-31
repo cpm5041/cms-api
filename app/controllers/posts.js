@@ -30,6 +30,44 @@ const show = (req, res) => {
   })
 }
 
+const addComment = (req, res, next) => {
+  const post = req.post
+  const comment = Object.assign(req.body.comment, {
+    postedBy: req.user._id
+  })
+  post.comments.push(comment)
+  post.save()
+    .then(post =>
+      res.status(201)
+        .json({
+          post: post.toJSON({ virtuals: true, user: req.user })
+        }))
+    .catch(next)
+}
+
+const updateComment = (req, res, next) => {
+  const post = req.post
+  console.log('user id is:', req.user._id)
+  console.log('comment is', req.body.comment)
+  const comment = post.comments.find(comment => comment.id === req.params.comment_id)
+  console.log(comment)
+  comment.body = req.body.comment.body
+  req.post.update(post)
+    .then(() => res.sendStatus(204))
+    .catch(next)
+  // const comment = Object.assign(req.body.comment, {
+  //   postedBy: req.user._id
+  // })
+  // post.comments.push(comment)
+  // post.save()
+  //   .then(post =>
+  //     res.status(201)
+  //       .json({
+  //         post: post.toJSON({ virtuals: true, user: req.user })
+  //       }))
+  //   .catch(next)
+}
+
 const create = (req, res, next) => {
   const post = Object.assign(req.body.post, {
     _owner: req.user._id
@@ -62,10 +100,12 @@ module.exports = controller({
   show,
   create,
   update,
-  destroy
+  destroy,
+  addComment,
+  updateComment
 }, { before: [
   { method: setUser, only: ['index', 'show'] },
   { method: authenticate, except: ['index', 'show'] },
-  { method: setModel(Post), only: ['show'] },
+  { method: setModel(Post), only: ['show', 'addComment', 'updateComment'] },
   { method: setModel(Post, { forUser: true }), only: ['update', 'destroy'] }
 ] })

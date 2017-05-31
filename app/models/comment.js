@@ -2,13 +2,7 @@
 
 const mongoose = require('mongoose')
 
-const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    minlength: 1,
-    maxlength: 100,
-    required: true
-  },
+const commentSchema = new mongoose.Schema({
   body: {
     type: String,
     minlength: 1,
@@ -19,14 +13,7 @@ const postSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  },
-  comments: [{
-    body: { type: String, default: '' },
-    postedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  }]
+  }
 }, {
   timestamps: true,
   toJSON: {
@@ -39,6 +26,6 @@ const postSchema = new mongoose.Schema({
   }
 })
 
-const Post = mongoose.model('Post', postSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
-module.exports = Post
+module.exports = Comment

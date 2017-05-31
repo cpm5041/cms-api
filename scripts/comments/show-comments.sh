@@ -1,7 +1,7 @@
 #!/bin/sh
 API="http://localhost:4741"
-URL_PATH="/posts"
-ID="592eda341325fb0f2b61871b"
+URL_PATH="/comments"
+ID="591b0bd9c69bb72cb59498ee"
 
 curl "${API}${URL_PATH}/${ID}" \
   --include \

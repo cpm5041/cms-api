@@ -20,6 +20,9 @@ module.exports = require('lib/wiring/routes')
 // all routes created
 .resources('posts')
 .get('/userposts/:id', 'posts#indexUser')
+// .get('/userposts/:id', 'posts#addComment')
+.post('/posts/:id/comments', 'posts#addComment')
+.patch('/posts/:id/comments/:comment_id', 'posts#updateComment')
 
 .resources('pages')
 .get('/userpages/:id', 'pages#indexUser')
