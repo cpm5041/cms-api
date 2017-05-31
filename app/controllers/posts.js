@@ -50,7 +50,14 @@ const updateComment = (req, res, next) => {
   console.log('user id is:', req.user._id)
   console.log('comment is', req.body.comment)
   const comment = post.comments.find(comment => comment.id === req.params.comment_id)
-  console.log(comment)
+  // console.log('req id type', typeof req.user._id)
+  // console.log('posted by id type', typeof comment.postedBy)
+  // req.user._id.toString()
+  // comment.postedBy.toString()
+  // console.log(!req.user._id.equals(comment.postedBy))
+  if (!req.user._id.equals(comment.postedBy)) {
+    throw new Error('Not Authorized')
+  }
   comment.body = req.body.comment.body
   req.post.update(post)
     .then(() => res.sendStatus(204))
