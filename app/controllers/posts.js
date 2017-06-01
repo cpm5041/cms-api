@@ -33,7 +33,8 @@ const show = (req, res) => {
 const addComment = (req, res, next) => {
   const post = req.post
   const comment = Object.assign(req.body.comment, {
-    postedBy: req.user._id
+    postedBy: req.user._id,
+    postedByEmail: req.user.email
   })
   post.comments.push(comment)
   post.save()

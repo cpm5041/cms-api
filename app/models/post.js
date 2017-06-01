@@ -25,7 +25,8 @@ const postSchema = new mongoose.Schema({
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
-    }
+    },
+    postedByEmail: String
   }]
 }, {
   timestamps: true,
