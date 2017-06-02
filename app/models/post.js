@@ -21,10 +21,15 @@ const postSchema = new mongoose.Schema({
     required: true
   },
   comments: [{
-    body: { type: String, default: '' },
+    body: {
+      type: String,
+      default: '',
+      minlength: 1,
+      maxlength: 200 },
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: true
     },
     postedByEmail: String
   }]
